@@ -6,8 +6,14 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    restocking: 'Restocking',
+    reports: 'Reports',
     companyName: 'Catalyst Components',
-    subtitle: 'Inventory Management System'
+    subtitle: 'Inventory Management System',
+    expandSidebar: 'Expand sidebar',
+    collapseSidebar: 'Collapse sidebar',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu'
   },
 
   // Dashboard
@@ -126,6 +132,22 @@ export default {
       status: 'Status',
       expectedDelivery: 'Expected Delivery',
       actualDelivery: 'Actual Delivery'
+    },
+    submitted: {
+      title: 'Submitted Orders ({count})',
+      empty: 'No restocking orders have been submitted yet.',
+      loadError: 'Failed to load submitted orders',
+      days: '{count} days',
+      status: 'Submitted',
+      table: {
+        orderNumber: 'Order Number',
+        submitted: 'Submitted',
+        items: 'Items',
+        total: 'Total',
+        leadTime: 'Lead Time',
+        expectedDelivery: 'Expected Delivery',
+        status: 'Status'
+      }
     }
   },
 
@@ -186,6 +208,41 @@ export default {
       trend: 'Trend',
       period: 'Period'
     }
+  },
+
+  // Restocking
+  restocking: {
+    title: 'Restocking',
+    description: 'Plan a restocking order from the demand forecast within a budget',
+    budgetLabel: 'Restocking budget',
+    tiles: {
+      budget: 'Budget',
+      recommendedTotal: 'Recommended Total',
+      remaining: 'Remaining Budget',
+      leadTime: 'Order Lead Time'
+    },
+    recommendation: 'Recommended Items',
+    table: {
+      item: 'Item',
+      growth: 'Growth',
+      quantity: 'Quantity',
+      unitCost: 'Unit Cost',
+      lineTotal: 'Line Total',
+      leadTime: 'Lead Time'
+    },
+    total: 'Total',
+    emptyTitle: 'No items fit within this budget',
+    empty: 'Items with rising demand are recommended in order of growth. The first item requires at least {amount}. Increase the budget to receive a recommendation.',
+    emptyNoCandidates: 'No items with rising demand are currently forecast, so there is nothing to restock.',
+    placeOrder: 'Place Order',
+    submitting: 'Submitting...',
+    success: 'Order {orderNumber} has been submitted.',
+    successTotal: 'Total',
+    successLeadTime: 'Lead time',
+    viewOrders: 'View in Orders',
+    loadError: 'Failed to load demand forecasts',
+    submitError: 'The order could not be submitted',
+    days: '{count} days'
   },
 
   // Filters

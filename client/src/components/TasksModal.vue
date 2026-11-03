@@ -278,20 +278,20 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  border-bottom: 2px solid #e2e8f0;
+  border-bottom: 2px solid var(--line);
 }
 
 .modal-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--ink-900);
   margin: 0;
 }
 
 .close-button {
   background: none;
   border: none;
-  color: #64748b;
+  color: var(--ink-500);
   cursor: pointer;
   padding: 0.5rem;
   display: flex;
@@ -303,7 +303,7 @@ export default {
 
 .close-button:hover {
   background: #f1f5f9;
-  color: #0f172a;
+  color: var(--ink-900);
 }
 
 .modal-body {
@@ -314,7 +314,7 @@ export default {
 
 .modal-footer {
   padding: 1.5rem 2rem;
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid var(--line);
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
@@ -332,12 +332,12 @@ export default {
 }
 
 .btn-secondary:hover {
-  background: #e2e8f0;
+  background: var(--line);
 }
 
 /* Task Form */
 .task-form {
-  background: #f8fafc;
+  background: var(--surface-muted);
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
@@ -378,7 +378,7 @@ label {
 .task-input,
 .task-select {
   padding: 0.75rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--line);
   border-radius: 8px;
   font-size: 0.95rem;
   transition: border-color 0.2s ease;
@@ -388,7 +388,7 @@ label {
 .task-input:focus,
 .task-select:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--accent);
 }
 
 .task-select {
@@ -398,7 +398,7 @@ label {
 
 .task-add-btn {
   padding: 0.75rem 1.75rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--accent);
   color: white;
   border: none;
   border-radius: 8px;
@@ -420,14 +420,14 @@ label {
 
 .tasks-divider {
   height: 1px;
-  background: #e2e8f0;
+  background: var(--line);
   margin: 2rem 0;
 }
 
 .no-tasks {
   text-align: center;
   padding: 3rem;
-  color: #64748b;
+  color: var(--ink-500);
   font-size: 1.1rem;
   font-style: italic;
 }
@@ -440,14 +440,14 @@ label {
 
 .task-item {
   background: white;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--line);
   border-radius: 10px;
   padding: 1rem 1.25rem;
   transition: all 0.2s ease;
 }
 
 .task-item:hover {
-  border-color: #cbd5e1;
+  border-color: var(--line-strong);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -486,7 +486,7 @@ label {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: var(--accent);
   flex-shrink: 0;
 }
 
@@ -494,7 +494,7 @@ label {
   flex: 1;
   cursor: pointer;
   user-select: none;
-  color: #0f172a;
+  color: var(--ink-900);
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.4;
@@ -537,10 +537,8 @@ label {
 .priority-badge {
   font-size: 0.688rem;
   font-weight: 600;
-  text-transform: uppercase;
   padding: 0.25rem 0.625rem;
   border-radius: 4px;
-  letter-spacing: 0.025em;
 }
 
 .priority-badge.high {
@@ -563,7 +561,7 @@ label {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--ink-500);
 }
 
 .task-due-date svg {

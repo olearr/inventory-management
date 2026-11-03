@@ -206,20 +206,20 @@ const getSummaryCardClass = () => {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--line);
 }
 
 .modal-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--ink-900);
   letter-spacing: -0.025em;
 }
 
 .close-button {
   background: none;
   border: none;
-  color: #64748b;
+  color: var(--ink-500);
   cursor: pointer;
   padding: 0.5rem;
   display: flex;
@@ -231,7 +231,7 @@ const getSummaryCardClass = () => {
 
 .close-button:hover {
   background: #f1f5f9;
-  color: #0f172a;
+  color: var(--ink-900);
 }
 
 .modal-body {
@@ -245,7 +245,7 @@ const getSummaryCardClass = () => {
   align-items: center;
   gap: 1.25rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--line);
   margin-bottom: 1.5rem;
 }
 
@@ -280,13 +280,13 @@ const getSummaryCardClass = () => {
 .item-name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--ink-900);
   margin: 0 0 0.5rem 0;
 }
 
 .item-sku {
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--ink-500);
   font-family: 'Monaco', 'Courier New', monospace;
 }
 
@@ -295,8 +295,6 @@ const getSummaryCardClass = () => {
   border-radius: 6px;
   font-size: 0.875rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
   flex-shrink: 0;
 }
 
@@ -329,8 +327,8 @@ const getSummaryCardClass = () => {
 }
 
 .summary-card.primary {
-  border-color: #bfdbfe;
-  background: #eff6ff;
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
 }
 
 .summary-card.success-card {
@@ -351,21 +349,19 @@ const getSummaryCardClass = () => {
 .summary-label {
   font-size: 0.813rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #64748b;
+  color: var(--ink-500);
   margin-bottom: 0.5rem;
 }
 
 .summary-value {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--ink-900);
 }
 
 .summary-subtitle {
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--ink-500);
   margin-top: 0.25rem;
 }
 
@@ -384,26 +380,24 @@ const getSummaryCardClass = () => {
 .info-label {
   font-size: 0.813rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #64748b;
+  color: var(--ink-500);
 }
 
 .info-value {
   font-size: 0.938rem;
-  color: #0f172a;
+  color: var(--ink-900);
   font-weight: 500;
 }
 
 .info-value.total-value {
   font-size: 1.125rem;
-  color: #2563eb;
+  color: var(--accent);
   font-weight: 700;
 }
 
 .modal-footer {
   padding: 1.5rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--line);
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
@@ -412,19 +406,19 @@ const getSummaryCardClass = () => {
 .btn-secondary {
   padding: 0.625rem 1.25rem;
   background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--line);
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.875rem;
-  color: #334155;
+  color: var(--ink-700);
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
 }
 
 .btn-secondary:hover {
-  background: #e2e8f0;
-  border-color: #cbd5e1;
+  background: var(--line);
+  border-color: var(--line-strong);
 }
 
 /* Modal transition animations */

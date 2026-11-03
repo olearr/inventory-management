@@ -736,7 +736,7 @@ export default {
 
 .header-meta {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--ink-500);
 }
 
 .kpi-section {
@@ -747,20 +747,19 @@ export default {
   font-size: 1rem;
   font-weight: 600;
   color: #475569;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   margin-bottom: 1rem;
 }
 
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* 200px so that all five KPI cards share one row at 1440px next to the sidebar */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
 
 .kpi-card {
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--line);
   border-radius: 10px;
   padding: 1rem;
 }
@@ -772,22 +771,20 @@ export default {
 .kpi-label {
   font-size: 0.813rem;
   font-weight: 600;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
+  color: var(--ink-500);
 }
 
 .kpi-value {
   font-size: 2rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--ink-900);
   margin-bottom: 0.5rem;
   letter-spacing: -0.025em;
 }
 
 .kpi-goal {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--ink-500);
   margin-bottom: 0.75rem;
 }
 
@@ -801,7 +798,7 @@ export default {
 
 .kpi-progress {
   height: 100%;
-  background: #3b82f6;
+  background: var(--accent);
   border-radius: 3px;
   transition: width 0.6s ease;
 }
@@ -883,15 +880,13 @@ export default {
 
 .donut-center-label {
   font-size: 12px;
-  fill: #64748b;
+  fill: var(--ink-500);
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .donut-center-value {
   font-size: 36px;
-  fill: #0f172a;
+  fill: var(--ink-900);
   font-weight: 700;
 }
 
@@ -928,16 +923,14 @@ export default {
 
 .health-metric-label {
   font-size: 0.688rem;
-  color: #64748b;
+  color: var(--ink-500);
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .health-metric-value {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--ink-900);
   letter-spacing: -0.025em;
 }
 
@@ -978,7 +971,7 @@ export default {
 .h-bar-container {
   flex: 1;
   height: 32px;
-  background: #f8fafc;
+  background: var(--surface-muted);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -1011,7 +1004,7 @@ export default {
   padding-right: 1rem;
   font-size: 0.75rem;
   color: #94a3b8;
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid var(--line);
 }
 
 .line-chart-area {
@@ -1044,33 +1037,33 @@ export default {
   width: 100%;
   max-width: 60px;
   min-height: 8px;
-  background: #3b82f6;
+  background: var(--accent);
   border-radius: 6px 6px 0 0;
   transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 4px rgba(15, 118, 110, 0.3);
 }
 
 .line-bar.empty-bar {
-  background: #e2e8f0;
+  background: var(--line);
   box-shadow: none;
   min-height: 4px;
 }
 
 .line-bar:hover {
-  background: #2563eb;
+  background: var(--accent-strong);
   transform: scaleY(1.05);
 }
 
 .line-bar.empty-bar:hover {
-  background: #cbd5e1;
+  background: var(--line-strong);
   transform: none;
 }
 
 .line-bar-label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--ink-500);
   white-space: nowrap;
 }
 
@@ -1109,7 +1102,7 @@ export default {
 }
 
 .clickable-row:hover {
-  background: #eff6ff !important;
+  background: var(--accent-soft) !important;
 }
 
 /* Tasks Card Styles */
@@ -1130,7 +1123,7 @@ export default {
 .task-input {
   flex: 1;
   padding: 0.75rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--line);
   border-radius: 8px;
   font-size: 0.95rem;
   transition: border-color 0.2s ease;
@@ -1138,12 +1131,12 @@ export default {
 
 .task-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--accent);
 }
 
 .task-add-btn {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--accent);
   color: white;
   border: none;
   border-radius: 8px;
@@ -1164,7 +1157,7 @@ export default {
 .no-tasks {
   text-align: center;
   padding: 2rem;
-  color: #64748b;
+  color: var(--ink-500);
   font-style: italic;
 }
 
@@ -1179,14 +1172,14 @@ export default {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  background: #f8fafc;
+  background: var(--surface-muted);
   border-radius: 8px;
   border: 2px solid transparent;
   transition: all 0.2s ease;
 }
 
 .task-item:hover {
-  border-color: #e2e8f0;
+  border-color: var(--line);
   background: white;
 }
 
@@ -1203,14 +1196,14 @@ export default {
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: var(--accent);
 }
 
 .task-text {
   flex: 1;
   cursor: pointer;
   user-select: none;
-  color: #0f172a;
+  color: var(--ink-900);
   font-size: 0.95rem;
 }
 
@@ -1248,18 +1241,18 @@ export default {
 }
 
 .po-button.create {
-  background: #3b82f6;
+  background: var(--accent);
   color: white;
 }
 
 .po-button.create:hover {
-  background: #2563eb;
+  background: var(--accent-strong);
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 4px rgba(15, 118, 110, 0.3);
 }
 
 .po-button.view {
-  background: #64748b;
+  background: var(--ink-500);
   color: white;
 }
 

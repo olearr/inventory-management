@@ -336,7 +336,7 @@ export default {
 .card-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--ink-900);
   margin: 0;
 }
 
@@ -346,21 +346,21 @@ export default {
 }
 
 .reports-table th {
-  background: #f8fafc;
+  background: var(--surface-muted);
   padding: 0.75rem;
   text-align: left;
   font-weight: 600;
-  color: #64748b;
-  border-bottom: 2px solid #e2e8f0;
+  color: var(--ink-500);
+  border-bottom: 2px solid var(--line);
 }
 
 .reports-table td {
   padding: 0.75rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--line);
 }
 
 .reports-table tr:hover {
-  background: #f8fafc;
+  background: var(--surface-muted);
 }
 
 .chart-container {
@@ -393,20 +393,20 @@ export default {
 
 .bar {
   width: 100%;
-  background: linear-gradient(to top, #3b82f6, #60a5fa);
+  background: linear-gradient(to top, var(--accent), var(--accent-on-dark));
   border-radius: 4px 4px 0 0;
   transition: all 0.3s;
   cursor: pointer;
 }
 
 .bar:hover {
-  background: linear-gradient(to top, #2563eb, #3b82f6);
+  background: linear-gradient(to top, var(--accent-strong), var(--accent));
 }
 
 .bar-label {
   margin-top: 0.5rem;
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--ink-500);
   text-align: center;
   transform: rotate(-45deg);
   white-space: nowrap;
@@ -425,19 +425,19 @@ export default {
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid var(--accent);
 }
 
 .stat-label {
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--ink-500);
   margin-bottom: 0.5rem;
 }
 
 .stat-value {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--ink-900);
 }
 
 .badge {
@@ -475,7 +475,7 @@ export default {
 .loading {
   text-align: center;
   padding: 3rem;
-  color: #64748b;
+  color: var(--ink-500);
 }
 
 .error {

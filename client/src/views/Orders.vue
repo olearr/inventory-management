@@ -27,6 +27,54 @@
         </div>
       </div>
 
+      <!-- Restocking orders submitted from the Restocking page; independent of the global filters -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{{ t('orders.submitted.title', { count: restockOrders.length }) }}</h3>
+        </div>
+        <div v-if="restockLoading" class="loading">{{ t('common.loading') }}</div>
+        <div v-else-if="restockError" class="error">{{ restockError }}</div>
+        <p v-else-if="restockOrders.length === 0" class="restock-empty">{{ t('orders.submitted.empty') }}</p>
+        <div v-else class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>{{ t('orders.submitted.table.orderNumber') }}</th>
+                <th>{{ t('orders.submitted.table.submitted') }}</th>
+                <th>{{ t('orders.submitted.table.items') }}</th>
+                <th>{{ t('orders.submitted.table.total') }}</th>
+                <th>{{ t('orders.submitted.table.leadTime') }}</th>
+                <th>{{ t('orders.submitted.table.expectedDelivery') }}</th>
+                <th>{{ t('orders.submitted.table.status') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="order in restockOrders" :key="order.id">
+                <td><strong>{{ order.order_number }}</strong></td>
+                <td>{{ formatDate(order.submitted_at) }}</td>
+                <td>
+                  <details class="items-details">
+                    <summary class="items-summary">
+                      {{ t('orders.itemsCount', { count: order.items.length }) }}
+                    </summary>
+                    <div class="items-dropdown">
+                      <div v-for="item in order.items" :key="item.item_sku" class="item-entry">
+                        <span class="item-name">{{ translateProductName(item.item_name) }}</span>
+                        <span class="item-meta">{{ t('orders.quantity') }}: {{ item.quantity }} @ {{ formatMoney(item.unit_cost) }}</span>
+                      </div>
+                    </div>
+                  </details>
+                </td>
+                <td><strong>{{ formatMoney(order.total_cost) }}</strong></td>
+                <td>{{ t('orders.submitted.days', { count: order.lead_time_days }) }}</td>
+                <td>{{ formatDate(order.expected_delivery) }}</td>
+                <td><span class="badge info">{{ t('orders.submitted.status') }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">{{ t('orders.allOrders') }} ({{ orders.length }})</h3>
@@ -83,6 +131,7 @@ import { ref, onMounted, watch, computed } from 'vue'
 import { api } from '../api'
 import { useFilters } from '../composables/useFilters'
 import { useI18n } from '../composables/useI18n'
+import { formatCurrencyWithDecimals } from '../utils/currency'
 
 export default {
   name: 'Orders',
@@ -153,9 +202,36 @@ export default {
       })
     }
 
-    onMounted(loadOrders)
+    // Submitted restocking orders: own state so a failure here never hides the main orders table
+    const restockOrders = ref([])
+    const restockLoading = ref(true)
+    const restockError = ref(null)
+
+    const loadRestockOrders = async () => {
+      try {
+        restockLoading.value = true
+        restockError.value = null
+        restockOrders.value = await api.getRestockOrders()
+      } catch (err) {
+        restockError.value = t('orders.submitted.loadError') + ': ' + err.message
+      } finally {
+        restockLoading.value = false
+      }
+    }
+
+    // Backend amounts are USD with cents; show two decimals so unit costs are not rounded to whole dollars
+    const formatMoney = (amount) => formatCurrencyWithDecimals(amount, currentCurrency.value, 2)
+
+    onMounted(() => {
+      loadOrders()
+      loadRestockOrders()
+    })
 
     return {
+      restockOrders,
+      restockLoading,
+      restockError,
+      formatMoney,
       t,
       loading,
       error,
@@ -172,6 +248,12 @@ export default {
 </script>
 
 <style scoped>
+.restock-empty {
+  color: var(--ink-500);
+  font-size: 0.938rem;
+  padding: 0.5rem 0;
+}
+
 /* Fixed table layout to prevent column shifting */
 .orders-table {
   table-layout: fixed;
@@ -210,7 +292,7 @@ export default {
 
 .items-summary {
   cursor: pointer;
-  color: #3b82f6;
+  color: var(--accent);
   font-weight: 500;
   list-style: none;
   user-select: none;
@@ -234,7 +316,7 @@ export default {
 }
 
 .items-summary:hover {
-  color: #2563eb;
+  color: var(--accent-strong);
   text-decoration: underline;
 }
 
@@ -245,7 +327,7 @@ export default {
   left: 0;
   margin-top: 0.5rem;
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   padding: 0.75rem;
@@ -269,11 +351,11 @@ export default {
 .item-name {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #0f172a;
+  color: var(--ink-900);
 }
 
 .item-meta {
   font-size: 0.813rem;
-  color: #64748b;
+  color: var(--ink-500);
 }
 </style>

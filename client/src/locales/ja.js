@@ -6,8 +6,14 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    restocking: '補充発注',
+    reports: 'レポート',
     companyName: '触媒コンポーネンツ',
-    subtitle: '在庫管理システム'
+    subtitle: '在庫管理システム',
+    expandSidebar: 'サイドバーを展開',
+    collapseSidebar: 'サイドバーを折りたたむ',
+    openMenu: 'メニューを開く',
+    closeMenu: 'メニューを閉じる'
   },
 
   // Dashboard
@@ -126,6 +132,22 @@ export default {
       status: 'ステータス',
       expectedDelivery: '予定配達日',
       actualDelivery: '実際の配達日'
+    },
+    submitted: {
+      title: '発注済みの注文 ({count})',
+      empty: '発注済みの補充注文はまだありません。',
+      loadError: '発注済みの注文を読み込めませんでした',
+      days: '{count}日',
+      status: '発注済み',
+      table: {
+        orderNumber: '注文番号',
+        submitted: '発注日',
+        items: '品目',
+        total: '合計',
+        leadTime: 'リードタイム',
+        expectedDelivery: '予定配達日',
+        status: 'ステータス'
+      }
     }
   },
 
@@ -186,6 +208,41 @@ export default {
       trend: 'トレンド',
       period: '期間'
     }
+  },
+
+  // Restocking
+  restocking: {
+    title: '補充発注',
+    description: '需要予測に基づき、予算内で補充注文を作成します',
+    budgetLabel: '補充予算',
+    tiles: {
+      budget: '予算',
+      recommendedTotal: '推奨合計額',
+      remaining: '残り予算',
+      leadTime: '注文のリードタイム'
+    },
+    recommendation: '推奨品目',
+    table: {
+      item: '品目',
+      growth: '増加率',
+      quantity: '数量',
+      unitCost: '単価',
+      lineTotal: '小計',
+      leadTime: 'リードタイム'
+    },
+    total: '合計',
+    emptyTitle: 'この予算で発注できる品目はありません',
+    empty: '需要が増加している品目を増加率の高い順に推奨します。最初の品目には少なくとも{amount}が必要です。推奨を表示するには予算を引き上げてください。',
+    emptyNoCandidates: '現在、需要の増加が予測されている品目はないため、補充の対象はありません。',
+    placeOrder: '発注する',
+    submitting: '送信中...',
+    success: '注文 {orderNumber} を発注しました。',
+    successTotal: '合計',
+    successLeadTime: 'リードタイム',
+    viewOrders: '注文一覧で確認',
+    loadError: '需要予測を読み込めませんでした',
+    submitError: '注文を送信できませんでした',
+    days: '{count}日'
   },
 
   // Filters

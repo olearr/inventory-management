@@ -1,7 +1,9 @@
 <template>
-  <div class="language-switcher">
+  <div class="language-switcher" :class="{ 'is-rail': isIconOnly }">
     <button
       class="language-button"
+      :title="isIconOnly ? localeName : undefined"
+      :aria-label="isIconOnly ? localeName : undefined"
       @click="toggleDropdown"
       @blur="handleBlur"
     >
@@ -57,8 +59,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from '../composables/useI18n'
+import { useSidebar } from '../composables/useSidebar'
 
 const { currentLocale, setLocale, availableLocales, localeName } = useI18n()
+const { isIconOnly } = useSidebar()
 
 const isDropdownOpen = ref(false)
 
@@ -97,33 +101,41 @@ const selectLanguage = (locale) => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0.875rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  /* Trigger sits on the dark sidebar, so it is transparent with a light hairline */
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-control);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.15s ease;
   font-family: inherit;
   font-size: 0.875rem;
-  color: #334155;
+  color: #e2e8f0;
 }
 
 .language-button:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
+  background: var(--ink-800);
+}
+
+.language-button:focus-visible {
+  outline: 2px solid var(--accent-on-dark);
+  outline-offset: 2px;
 }
 
 .globe-icon {
-  color: #64748b;
+  color: var(--ink-400);
   flex-shrink: 0;
 }
 
 .language-label {
+  flex: 1;
+  text-align: left;
   font-weight: 500;
 }
 
 .chevron {
-  color: #64748b;
+  color: var(--ink-400);
   transition: transform 0.2s ease;
   flex-shrink: 0;
 }
@@ -134,9 +146,12 @@ const selectLanguage = (locale) => {
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  min-width: 160px;
+  /* Opens upwards because the trigger is pinned to the bottom of the sidebar */
+  bottom: calc(100% + 0.5rem);
+  left: 0;
+  top: auto;
+  right: auto;
+  min-width: max(100%, 160px);
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
@@ -168,8 +183,33 @@ const selectLanguage = (locale) => {
 }
 
 .dropdown-item.active {
-  background: #eff6ff;
-  color: #2563eb;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+/* Rail: globe icon only (label/chevron stay readable to screen readers), menu opens sideways */
+.is-rail .language-button {
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.is-rail .language-label,
+.is-rail .chevron {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* 1.25rem = footer padding + gap, so the menu clears the rail's right edge */
+.is-rail .dropdown-menu {
+  left: calc(100% + 1.25rem);
+  bottom: 0;
+  top: auto;
+  right: auto;
 }
 
 .language-name {
@@ -177,7 +217,7 @@ const selectLanguage = (locale) => {
 }
 
 .check-icon {
-  color: #2563eb;
+  color: var(--accent);
   flex-shrink: 0;
 }
 </style>

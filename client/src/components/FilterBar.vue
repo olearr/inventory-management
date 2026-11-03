@@ -102,16 +102,17 @@ export default {
 
 <style scoped>
 .filters-bar {
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--canvas);
+  border-bottom: 1px solid var(--line);
   padding: 0.75rem 0;
+  /* Sidebar replaced the top nav, so the bar now sticks to the viewport top */
   position: sticky;
-  top: 70px;
+  top: 0;
   z-index: 90;
 }
 
 .filters-container {
-  max-width: 1600px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
@@ -132,6 +133,44 @@ export default {
   gap: 0.5rem;
 }
 
+/* With the 72px rail the four selects (~1000px) no longer fit below 1024px, so let them wrap
+   instead of stretching the page sideways. */
+@media (max-width: 1023px) {
+  .filters-grid {
+    flex-wrap: wrap;
+  }
+}
+
+/* Below 640px the sidebar is a drawer and a 56px top bar takes its place, so the
+   sticky filter bar must park under that bar; the selects wrap into two columns. */
+@media (max-width: 639px) {
+  .filters-bar {
+    top: 56px;
+  }
+
+  .filters-container {
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+
+  .filters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-basis: 100%;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .filter-select {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
 .filter-group label {
   font-size: 0.75rem;
   font-weight: 600;
@@ -141,8 +180,8 @@ export default {
 
 .filter-select {
   padding: 0.4rem 0.75rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
   font-size: 0.813rem;
   color: #0f172a;
   background: white;
@@ -158,8 +197,8 @@ export default {
 
 .filter-select:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.18);
 }
 
 .reset-filters-btn {
